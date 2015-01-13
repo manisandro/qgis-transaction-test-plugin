@@ -88,9 +88,11 @@ class TransactionTestPlugin(QObject):
         if commit:
             if not self.transaction.commit(errmsg):
                 QMessageBox.critical(self.dialog, "Error", "Failed to commit transaction: %s." % errmsg)
+                return
         else:
             if not self.transaction.rollback(errmsg):
                 QMessageBox.critical(self.dialog, "Error", "Failed to rollback transaction: %s." % errmsg)
+                return
 
         self.ui.pushButton_create.setEnabled(True)
         self.ui.pushButton_sql.setEnabled(False)
